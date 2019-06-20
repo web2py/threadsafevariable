@@ -3,7 +3,7 @@ import setuptools
 from threadsafevariable import __version__
 
 setuptools.setup(
-    name = "theadsafevariable",
+    name = "threadsafevariable",
     version = __version__,
     url = 'https://github.com/web2py/threadsafevariable',
     license = 'BSD',

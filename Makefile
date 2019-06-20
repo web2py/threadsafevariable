@@ -1,3 +1,5 @@
+.PHONY: clean build install test deploy
+
 clean:
 	rm -rf dist
 build:
