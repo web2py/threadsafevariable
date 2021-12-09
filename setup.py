@@ -12,7 +12,6 @@ setuptools.setup(
     maintainer = 'Massimo Di Pierro',
     maintainer_email = 'massimo.dipierro@gmail.com',
     description = 'A library to make object attributes that are thread safe',
-    content_type = "text/markdown",
     packages = ['threadsafevariable'],
     include_package_data = True,
     zip_safe = False,
