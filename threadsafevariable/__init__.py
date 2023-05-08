@@ -2,7 +2,7 @@ import copy
 import threading
 
 
-__version__ = 1.2
+__version__ = 20230507.1
 
 
 class ThreadSafeVariable:
@@ -15,7 +15,7 @@ class ThreadSafeVariable:
         key = "%s.%s" % (id(instance), id(self))
         if self.master_thread == threading.current_thread():
             self.defaults[key] = value
-        setattr(self.storage, key, value)        
+        setattr(self.storage, key, value)
 
     def __get__(self, instance, owner):
         key = "%s.%s" % (id(instance), id(self))
