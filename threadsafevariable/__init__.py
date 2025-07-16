@@ -8,7 +8,6 @@ __version__ = 20250716.1
 class ThreadSafeVariable:
 
     storage = threading.local()
-    storage.vars = {}
     master_thread = threading.current_thread()
     defaults = {}
     
