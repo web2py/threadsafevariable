@@ -2,12 +2,13 @@ import copy
 import threading
 
 
-__version__ = 20230507.1
+__version__ = 20250716.1
 
 
 class ThreadSafeVariable:
 
     storage = threading.local()
+    storage.vars = {}
     master_thread = threading.current_thread()
     defaults = {}
 
@@ -15,21 +16,19 @@ class ThreadSafeVariable:
         key = "%s.%s" % (id(instance), id(self))
         if self.master_thread == threading.current_thread():
             self.defaults[key] = value
-        setattr(self.storage, key, value)
+        self.storage.vars[key] = value
 
     def __get__(self, instance, owner):
         key = "%s.%s" % (id(instance), id(self))
-        return getattr(
-            self.storage,
-            key,
-            self.defaults.get(key))
-    
+        try:
+            return self.storage.vars[key]
+        except KeyError: 
+            return self.defaults.get(key)
 
     @staticmethod
     def freeze():
-        return copy.copy(ThreadSafeVariable.storage.__dict__)
+        return copy.copy(ThreadSafeVariable.storage.vars)
 
     @staticmethod
     def restore(image):
-        for key in image:
-            setattr(ThreadSafeVariable.storage, key, image[key])
+        ThreadSafeVariable.storage.vars = copy.copy(image)
