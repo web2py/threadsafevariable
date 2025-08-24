@@ -1,6 +1,6 @@
 [project]
 name = "threadsafevariable"
-version = "20230507.1"
+version = "20250716.1"
 authors = [{ name="Massimo Di Pierro", email="massimo.dipierro@gmail.com" },]
 description = "Please read the README"
 readme = "README.md"
